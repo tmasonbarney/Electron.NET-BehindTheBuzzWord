@@ -1,3 +1,4 @@
+using ElectronNET.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace ElectronAngular
 {
@@ -70,6 +72,9 @@ namespace ElectronAngular
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            // Open the Electron-Window here
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ElectronBlazor.Data;
+using ElectronNET.API;
 
 namespace ElectronBlazor
 {
@@ -55,6 +56,9 @@ namespace ElectronBlazor
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            // Open the Electron-Window here
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }
